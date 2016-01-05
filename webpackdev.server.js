@@ -5,7 +5,7 @@ var proxy = require('proxy-middleware');
 var url = require('url');
 
 module.exports = function(app) {
-    // 使用8081端口
+    // 使用9001端口
     app.use('/assets', proxy(url.parse('http://localhost:9001/assets')));
 
     var server = new WebpackDevServer(webpack(config), {
@@ -17,7 +17,7 @@ module.exports = function(app) {
         stats: {
             colors: true
         },
-        historyApiFallback: true
+        // historyApiFallback: true
     }).listen(9001, 'localhost', function() {
         console.log('socketio listen 9001')
     });

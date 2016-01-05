@@ -17,8 +17,8 @@ module.exports = {
     },
     entry: {
         app: [
-            'webpack/hot/dev-server',
             'webpack-dev-server/client?http://localhost:9001',
+            'webpack/hot/dev-server',
             __dirname + '/public/javascripts/core/bootstrap'
         ]
     },
@@ -29,6 +29,9 @@ module.exports = {
     },
     module: {
         loaders: [{
+            test: /\.css$/,
+            loader: "style!css?sourceMap"
+        }, {
             test: /\.jsx?$/,
             // exclude: /bower_components/,
             loader: 'babel',
@@ -37,14 +40,11 @@ module.exports = {
                 presets: ['es2015']
             }
         }, {
-            test: /\.css$/,
-            loader: "style!css?sourceMap"
-        }, {
             test: /\.scss$/,
             loader: 'style!css!autoprefixer!sass?sourceMap'
         }, {
             test: /\.js$/,
-            loader: 'ng-annotate!babel!jshint?sourceMap',
+            loader: 'ng-annotate!babel!jshint',
             exclude: /node_modules|bower_components/
         }, {
             test: /\.html$/,
@@ -58,7 +58,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
     ],
-    devtool: 'eval-source-map',
+    devtool: 'sourcemap',
     devServer: {
         historyApiFallback: true,
         stats: {
