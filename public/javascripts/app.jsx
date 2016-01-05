@@ -13,8 +13,9 @@ var angular = require('angular'),
           of putting it in both: 3.bundle.js and 4.bundle.js
          */
         //require('commons/msg-store').name,
-        // require('./pages/home/home.routing').name,
+        require('./homepage/home.routing').name,
         // require('./pages/messages/messages.routing').name,
     ]);
 
 module.exports = app;
+
