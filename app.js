@@ -10,9 +10,9 @@ var users = require('./routes/users');
 
 var app = express();
 // if (process.env.NODE_ENV is 'dev') {
-// if (app.get('env') === 'development') {
-  require('./webpackdev.server')(app);
-// }
+ if (app.get('env') === 'development') {
+ require('./webpackdev.server')(app);
+ }
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use('/dist',express.static(path.join(__dirname, 'dist')));
+ app.use('/dist',express.static(path.join(__dirname, 'dist')));
 
 app.use('/', routes);
 app.use('/users', users);

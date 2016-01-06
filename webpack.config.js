@@ -1,6 +1,6 @@
 var path = require('path'),
     webpack = require('webpack');
-
+// var ignoreFiles = new webpack.IgnorePlugin(/\.\/knockout.js$/);
 // PATHS
 var PATHS = {
     app: __dirname,
@@ -12,6 +12,8 @@ module.exports = {
     // modulesDirectories: ["web_loaders", "web_modules", "node_loaders", "../node_modules"],
     context: PATHS.app,
     resolve: {
+        root: [path.join(__dirname, "bower_components")],
+        modulesDirectories: ['node_modules', 'bower_components'],
         // 现在可以写 require('file') 代替 require('file.js')
         extensions: ['', '.js', '.json', '.jsx']
     },
@@ -44,7 +46,7 @@ module.exports = {
             loader: 'style!css!autoprefixer!sass?sourceMap'
         }, {
             test: /\.js$/,
-            loader: 'ng-annotate!babel!jshint',
+            loader: 'babel!jshint',
             exclude: /node_modules|bower_components/
         }, {
             test: /\.html$/,
@@ -55,8 +57,12 @@ module.exports = {
         }]
     },
     plugins: [
+        // ignoreFiles,
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        new webpack.ResolverPlugin(
+            new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
+        )
     ],
     devtool: 'sourcemap',
     devServer: {

@@ -1,0 +1,23 @@
+{
+  "name": "expressStarter",
+  "description": "",
+  "main": "",
+  "authors": [
+    "zhangwen9229 <378253487@qq.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "knockout": "knockoutjs#~3.4.0",
+    "debug": "*",
+    "jquery-pjax": "~1.9.6"
+  }
+}

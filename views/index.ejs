@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p> <%= title %></p>
-    <script type="text/javascript" src="/assets/bundle.js" charset="utf-8"></script>
-  </body>
-</html>
+<% include common/header.ejs %>
+<h1><%= title %></h1>
+<p> <%= title %></p>
+
+<ul data-bind="foreach: places">
+    <li>
+        <span data-bind="text: $data"></span>
+        <button data-bind="click: $parent.removePlace">Remove</button>
+    </li>
+</ul>
+<div class="container" id="pjax-container">
+	Go to <a href="/test">next page</a>.
+</div>
+<% include common/footer.ejs %>
