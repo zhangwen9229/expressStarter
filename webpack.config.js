@@ -1,6 +1,5 @@
 var path = require('path'),
     webpack = require('webpack');
-// var ignoreFiles = new webpack.IgnorePlugin(/\.\/knockout.js$/);
 // PATHS
 var PATHS = {
     app: __dirname,
@@ -22,11 +21,16 @@ module.exports = {
             'webpack-dev-server/client?http://localhost:9001',
             'webpack/hot/dev-server',
             __dirname + '/public/javascripts/core/bootstrap'
+        ],
+        css: [
+            'webpack-dev-server/client?http://localhost:9001',
+            'webpack/hot/dev-server',
+            __dirname + '/public/javascripts/core/css'
         ]
     },
     output: {
         path: PATHS.app + '/dist/',
-        filename: "bundle.js", //打包后的名字,
+        filename: "[name].js", //打包后的名字,
         publicPath: "http://localhost:9001/assets/"
     },
     module: {
@@ -46,18 +50,23 @@ module.exports = {
             loader: 'style!css!autoprefixer!sass?sourceMap'
         }, {
             test: /\.js$/,
-            loader: 'babel!jshint',
+            loader: 'babel', //!jshint
             exclude: /node_modules|bower_components/
         }, {
             test: /\.html$/,
             loader: 'raw'
         }, {
-            test: /\.(png|jpg|woff|woff2|eot|ttf|svg)$/,
+            test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            loader: "url-loader?limit=10000&minetype=application/font-woff"
+        }, {
+            test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            loader: "file-loader"
+        }, {
+            test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg)$/,
             loader: 'url-loader?limit=8192'
         }]
     },
     plugins: [
-        // ignoreFiles,
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.ResolverPlugin(

@@ -20,4 +20,16 @@ router.get('/test', function (req, res, next) {
 });
 
 
+router.get('/test1', function (req, res, next) {
+    var option = {
+        title: 'test1'
+    }
+    if (req.headers['x-pjax']) {
+        option.layout = false;
+    }
+    console.log("aa" + req.headers['x-pjax']);
+    res.render('test1', option);
+});
+
+
 module.exports = router;

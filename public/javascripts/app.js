@@ -1,4 +1,6 @@
 'use strict';
+var viewModel = require("./" + $("body").find('*[pageflag]').attr("pageflag") + "/index.js");
+module.exports = viewModel;
 
 // var angular = require('angular'),
 //     app = angular.module('lazyApp', [
@@ -17,6 +19,5 @@
 //         // require('./pages/messages/messages.routing').name,
 //     ]);
 
-var viewModel = require("./" + $("body").attr("pageflag") + "/index.js");
+
 // var viewModel = require("./homepage/index");
-module.exports = viewModel;

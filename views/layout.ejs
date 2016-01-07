@@ -1,19 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><%= title %></title>
+	<title><%= locals.title%></title>
 
-	<!-- <link rel='stylesheet' href='/stylesheets/style.css' />
-	-->
+	 <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+		<script type="text/javascript" src="/assets/css.js" charset="utf-8"></script>
 </head>
-<body pageflag="homepage">
+<body>
+	<header class="m-head">
+		<div class="rows1">
+			<div class="w-area">
+				<div class="p-num">服务热线：4006535666</div>
+				<div class="r-info">
+					<a href="/passport/login">立即登录</a>
+					<a href="/passport/userCenter/register">免费注册</a>
+				</div>
+
+				<div class="r-info">
+					<a href="/passport/login">立即登录</a>
+					<a href="/passport/userCenter/register">免费注册</a>
+				</div>
+
+			</div>
+		</div>
+		<div class="rows2">
+			<div class="w-area cf" id="headNav">
+				<h1 class="m-logo posr">
+					<a target="_blank" href="http://www.jzbank.com/" id="official"></a>
+					<a href="/" id="homeStation">
+						<span style="position: absolute;right: 10px;top: -16px;bottom: 0;margin: auto;font-size: 21px;color:#000">投融资平台</span>
+					</a>
+				</h1>
+				<nav class="m-nav" id="m-nav">
+					<a href="/" class="homepage">首 页</a>
+					<a href="/bid/list">我要投资</a>
+					<a href="/loan/apply">我要借款</a>
+					<a class="my" href="/my">我的账户</a>
+					<a class="help" href="/help/guide">帮助中心</a>
+				</nav>
+			</div>
+		</div>
+	</header>
 	<div class="main">
 		<%- body %>
 	</div>
 
-	<script type="text/javascript" src="/javascripts/lib/es5-shim.js" charset="utf-8"></script>
-	<script type="text/javascript" src="/javascripts/lib/jquery/1.8.2/jquery.js" charset="utf-8"></script>
+
+	<script type="text/javascript" src="/javascripts/lib/jquery/1.11.3/jquery.min.js" charset="utf-8"></script>
 	<script type="text/javascript" src="/javascripts/lib/knockout.js" charset="utf-8"></script>
-	<script type="text/javascript" src="/assets/bundle.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/assets/app.js" charset="utf-8"></script>
 </body>
 </html>

@@ -8,14 +8,14 @@ module.exports = function () {
     // });
     // require('bootstrap/dist/css/bootstrap.css');
 
+    // global.$ = global.jQuery = require('jquery');
 
-    require('../../stylesheets/style.css');
+    // require('../../stylesheets/style.css');
     require('jquery-pjax');
 
 
     // global.ko = require('knockout');
     /* JS */
-    // global.$ = global.jQuery = require('jquery');
     // require('velocity-animate');
     // require('angular');
     // global.util = require('../lib/utility');

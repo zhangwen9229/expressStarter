@@ -1,15 +1,64 @@
 'use strict';
- 
+
 
 fn_getBrowserVersion();
 require('./vendor')();
-var viewModel = require('../app');
-
+// var viewModel = require('../app');
+var gPageStack = [];
 $(function() {
-	ko.applyBindings(viewModel);
+	fn_koApplyBindings($("body"));
+
 	$("body").pjax('a', '#pjax-container');
 	console.log("ko has bindings.");
+	if ($.support.pjax) {
+		fn_pjaxProcess();
+		$.pjax.defaults.maxCacheLength = 0;
+	}
+
 });
+
+function fn_pjaxProcess() {
+	$(document).on('pjax:complete', function() {
+		// $('#loading').hide()
+
+		console.log("pjax:complete");
+	}).on('pjax:start', function() {
+		console.log("pjax:start");
+	}).on('pjax:end', function() {
+		fn_koApplyBindings($(this));
+		console.log("pjax:end");
+	});
+}
+
+function fn_koApplyBindings($ele) {
+	var $elePageflag = $ele.find('*[pageflag]');
+	var pageflag = $elePageflag.attr("pageflag");
+	console.log(pageflag);
+	if (gPageStack.indexOf(pageflag) >= 0) {
+		ko.unapplyBindings($elePageflag);
+		// ko.cleanNode($elePageflag[0]);
+	};
+	// ko.unapplyBindings($elePageflag, true);
+	// ko.removeNode($elePageflag[0]);
+
+	var viewModel = require("../" + pageflag + "/index.js");
+
+	ko.applyBindings(viewModel, $elePageflag[0]);
+	gPageStack.push(pageflag);
+}
+
+ko.unapplyBindings = function($node, remove) {
+	// unbind events
+	$node.find("*").each(function() {
+		$(this).unbind();
+	});
+	// Remove KO subscriptions and references
+	if (remove) {
+		ko.removeNode($node[0]);
+	} else {
+		ko.cleanNode($node[0]);
+	}
+};
 
 function fn_getBrowserVersion() {
 	var Sys = {};

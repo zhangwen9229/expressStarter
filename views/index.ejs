@@ -1,13 +1,18 @@
 
-<h1><%= title %></h1>
-<p> <%= title %></p>
-
-<ul data-bind="foreach: places">
-    <li>
-        <span data-bind="text: $data"></span>
-        <button data-bind="click: $parent.removePlace">Remove</button>
-    </li>
-</ul>
 <div class="container" id="pjax-container">
-	Go to <a href="/test">next page</a>.
+	<div id="homepage" pageflag="homepage">
+		<h1>
+			<%= title %></h1>
+		<p>
+			<%= title %></p>
+		<ul data-bind="foreach: { data: places, includeDestroyed: true} ">
+			<li>
+				<span data-bind="text: $data"></span>
+				<button data-bind="click: $parent.removePlace">Remove</button>
+			</li>
+		</ul>
+		Go to
+		<a href="/test">next page</a>
+		.
+	</div>
 </div>
